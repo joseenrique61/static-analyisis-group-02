@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Libro.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">integracion-continua</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Libro.java</span></div><h1>Libro.java</h1><pre class="source lang-java linenums">public class Libro {
+
+    private String titulo;
+    private String autor;
+<span class="fc" id="L5">    private boolean disponible = true;</span>
+
+    // Problema PMD 1: campo privado declarado pero nunca utilizado.
+<span class="fc" id="L8">    private String codigoInterno = &quot;SIN-CODIGO&quot;;</span>
+
+<span class="fc" id="L10">    public Libro(String titulo, String autor) {</span>
+<span class="fc" id="L11">        this.titulo = titulo;</span>
+<span class="fc" id="L12">        this.autor = autor;</span>
+<span class="fc" id="L13">    }</span>
+
+    public String getTitulo() {
+<span class="fc" id="L16">        return titulo;</span>
+    }
+
+    public String getAutor() {
+<span class="fc" id="L20">        return autor;</span>
+    }
+
+    public boolean estaDisponible() {
+<span class="fc" id="L24">        return disponible;</span>
+    }
+
+    public void prestar() {
+        // Problema PMD 2: uso de System.out.println en código de aplicación.
+<span class="fc" id="L29">        System.out.println(&quot;Prestando libro: &quot; + titulo);</span>
+
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (!disponible) {</span>
+<span class="fc" id="L32">            throw new IllegalStateException(&quot;Libro no disponible&quot;);</span>
+        }
+
+<span class="fc" id="L35">        disponible = false;</span>
+<span class="fc" id="L36">    }</span>
+
+    public void devolver() {
+<span class="fc" id="L39">        disponible = true;</span>
+
+        // Problema PMD 3: bloque catch vacío.
+        try {
+<span class="nc" id="L43">            Integer.parseInt(&quot;ABC&quot;);</span>
+<span class="fc" id="L44">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L45">        }</span>
+<span class="fc" id="L46">    }</span>
+
+    public boolean esMismoTitulo(String otroTitulo) {
+        // Problema PMD 4: comparación incorrecta de String usando ==.
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        return titulo == otroTitulo;</span>
+    }
+
+    // Problema PMD 5: método privado declarado pero nunca utilizado.
+    private void registrarAuditoriaInterna() {
+<span class="nc" id="L55">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
